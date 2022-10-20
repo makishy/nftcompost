@@ -1,40 +1,31 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { BuyCompost } from '../components/BuyCompost'
+import { InputWalletAddressDialog } from '../components/InputWalletAddressDialog'
+import { PageTemplate } from '../components/PageTemplate'
+import { Title } from '../components/Title'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
   return (
-    <>
-      <Box m={2}>
-        <Stack direction='row' justifyContent='center'>
-          <Typography variant='h3' fontWeight='bold'>
-            NFTCompost
-          </Typography>
-        </Stack>
-        <Box mt={3} />
-        <Stack spacing={1}>
-          <Card>
-            <CardContent>
-              <Stack direction='row' justifyContent='center'>
-                <img src='/Compost.png' />
-              </Stack>
-            </CardContent>
-          </Card>
-          <Button variant='contained' fullWidth>
-            Buy
-          </Button>
-        </Stack>
-      </Box>
-    </>
+    <PageTemplate>
+      <InputWalletAddressDialog
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
+      <Title />
+      <Box mt={3} />
+      <BuyCompost
+        onClick={() => {
+          setIsOpen(true)
+        }}
+      />
+    </PageTemplate>
   )
 }
 
