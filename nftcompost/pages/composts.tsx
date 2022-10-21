@@ -11,6 +11,7 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart'
 import TokenIcon from '@mui/icons-material/Token'
 import HistoryIcon from '@mui/icons-material/History'
 import { useState } from 'react'
+import { Monitoring } from '../components/Monitoring'
 
 const Compost: NextPage = () => {
   const router = useRouter()
@@ -18,7 +19,7 @@ const Compost: NextPage = () => {
   const [selectedTab, setSelectedTab] = useState(0)
   return (
     <PageTemplate>
-      {selectedTab}
+      {selectedTab === 0 ? <Monitoring /> : <></>}
       <Paper
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
         elevation={3}

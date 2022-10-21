@@ -1,5 +1,6 @@
 import { Button, Card, CardContent, Stack } from '@mui/material'
 import React from 'react'
+import { CompostImg } from './Compost'
 
 type BuyCompostProps = {
   onClick: () => void
@@ -10,12 +11,10 @@ export const BuyCompost: React.FC<BuyCompostProps> = (props) => {
     <Stack spacing={1}>
       <Card>
         <CardContent>
-          <Stack direction='row' justifyContent='center'>
-            <img src='/Compost.png' />
-          </Stack>
+          <CompostImg />
         </CardContent>
       </Card>
-      <Button variant='contained' fullWidth onClick={onClick}>
+      <Button variant='contained' fullWidth onClick={onClick} size='large'>
         Buy
       </Button>
     </Stack>
