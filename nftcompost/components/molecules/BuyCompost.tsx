@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, Stack } from '@mui/material'
 import React from 'react'
-import { CompostImg } from './Compost'
+import { CompostImg } from '../atoms/Compost'
 
 type BuyCompostProps = {
   onClick: () => void

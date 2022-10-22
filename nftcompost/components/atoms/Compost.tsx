@@ -9,9 +9,9 @@ export const CompostImg: React.FC<CompostProps> = (props) => {
   return (
     <Stack direction='row' justifyContent='center' margin={4}>
       {color === 'red' ? (
-        <img src='/CompostRed.png' />
+        <img src='/CompostRed.png' alt='compost' />
       ) : (
-        <img src='/Compost.png' />
+        <img src='/Compost.png' alt='compost' />
       )}
     </Stack>
   )

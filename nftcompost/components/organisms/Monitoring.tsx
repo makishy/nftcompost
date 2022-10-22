@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
-import { CompostImg } from './Compost'
-import { Gauge } from './Gauge'
-import { PageTemplate } from './PageTemplate'
+import { CompostImg } from '../atoms/Compost'
+import { Gauge } from '../molecules/Gauge'
+import { PageTemplate } from '../templates/PageTemplate'
 import { Point } from './Point'
 import { State } from './State'
 
