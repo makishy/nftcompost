@@ -13,6 +13,7 @@ import HistoryIcon from '@mui/icons-material/History'
 import { useState } from 'react'
 import { Monitoring } from '../components/organisms/Monitoring'
 import { Tokens } from '../components/organisms/Tokens'
+import { Logs } from '../components/organisms/Logs'
 
 const Compost: NextPage = () => {
   const router = useRouter()
@@ -25,7 +26,7 @@ const Compost: NextPage = () => {
       ) : selectedTab === 1 ? (
         <Tokens />
       ) : (
-        <></>
+        <Logs />
       )}
       <Paper
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
