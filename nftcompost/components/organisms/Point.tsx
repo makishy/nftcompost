@@ -26,11 +26,9 @@ export const Point = () => {
           </Stack>
         </Stack>
       </CardContent>
-      <CardActionArea>
-        <CardActions sx={{ justifyContent: 'end' }}>
-          <Button variant='outlined'>to tokens</Button>
-        </CardActions>
-      </CardActionArea>
+      <CardActions sx={{ justifyContent: 'end' }}>
+        <Button variant='outlined'>to tokens</Button>
+      </CardActions>
     </Card>
   )
 }

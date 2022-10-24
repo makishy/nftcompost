@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { Monitoring } from '../components/organisms/Monitoring'
 import { Tokens } from '../components/organisms/Tokens'
 import { Logs } from '../components/organisms/Logs'
-
+import { getFirst } from '../utils/RouterUtil'
 const Compost: NextPage = () => {
   const router = useRouter()
   const { address } = router.query
@@ -22,7 +22,7 @@ const Compost: NextPage = () => {
   return (
     <PageTemplate>
       {selectedTab === 0 ? (
-        <Monitoring />
+        <Monitoring address={getFirst(address)} />
       ) : selectedTab === 1 ? (
         <Tokens />
       ) : (
