@@ -1,10 +1,17 @@
 import { Card, CardContent, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useRecoilValue } from 'recoil'
+import { useAddress } from '../../hooks/useAddress'
+import { connectedAddress } from '../../store/OwnerAddrState'
 import { Coin } from '../atoms/Coin'
 import { DisplayLabelValue } from '../molecules/DisplayLabelValue'
 import { Point } from './Point'
 
+
 export const Tokens = () => {
+  const address = useRecoilValue(connectedAddress)
+  const { point } = useAddress(address)
+
   return (
     <Stack spacing={1}>
       <Coin />
@@ -23,7 +30,7 @@ export const Tokens = () => {
           </Stack>
         </CardContent>
       </Card>
-      <Point />
+      <Point point={point} />
     </Stack>
   )
 }

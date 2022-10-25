@@ -1,7 +1,6 @@
 import {
   BottomNavigation,
   BottomNavigationAction,
-  List,
   Paper,
 } from '@mui/material'
 import { NextPage } from 'next'
@@ -10,19 +9,29 @@ import { PageTemplate } from '../components/templates/PageTemplate'
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart'
 import TokenIcon from '@mui/icons-material/Token'
 import HistoryIcon from '@mui/icons-material/History'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Monitoring } from '../components/organisms/Monitoring'
 import { Tokens } from '../components/organisms/Tokens'
 import { Logs } from '../components/organisms/Logs'
-import { getFirst } from '../utils/RouterUtil'
+import { RouterUtils } from '../utils/RouterUtil'
+import { useRecoilState } from 'recoil'
+import { connectedAddress } from '../store/OwnerAddrState'
 const Compost: NextPage = () => {
   const router = useRouter()
   const { address } = router.query
   const [selectedTab, setSelectedTab] = useState(0)
+  const [ownerAddr, setOwnerAddr] = useRecoilState(connectedAddress)
+  useEffect(() => {
+    if (address) {
+      const a = RouterUtils.getFirst(address)
+      setOwnerAddr(a)
+    }
+  }, [address, setOwnerAddr])
+
   return (
     <PageTemplate>
       {selectedTab === 0 ? (
-        <Monitoring address={getFirst(address)} />
+        <Monitoring address={ownerAddr} />
       ) : selectedTab === 1 ? (
         <Tokens />
       ) : (

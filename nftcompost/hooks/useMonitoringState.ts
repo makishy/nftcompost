@@ -4,13 +4,10 @@ import { db } from '../lib/firebase'
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
-  query,
-  where,
 } from 'firebase/firestore'
 export const useMonitoringState = (deviceId?: string) => {
-  const [monitoringState, setMonitoringState] = useState<MonitoringState>()
+  const [monitoringStates, setMonitoringStates] = useState<MonitoringState[]>([])
   useEffect(() => {
     const f = async () => {
       if (deviceId) {
@@ -18,10 +15,12 @@ export const useMonitoringState = (deviceId?: string) => {
         const pointRef = collection(docRef, 'point')
         const snap = await getDocs(pointRef)
         snap.forEach((doc) => {
+          setMonitoringStates([MonitoringState.fromData(doc.data())])
           console.log(doc.id, doc.data())
         })
       }
     }
     f()
   }, [deviceId])
+  return { monitoringStates }
 }

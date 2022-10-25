@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
+import { DocumentData } from 'firebase/firestore'
 
 dayjs.extend(timezone)
 dayjs.extend(utc)
@@ -28,5 +29,14 @@ export class DeviceLog {
   }
   get formattedCreatedAt(): string {
     return dayjs(this.createdAt * 1000).format('HH:mm MM.DD.YYYY')
+  }
+  static fromData(data: DocumentData){
+    return new DeviceLog({
+      createdAt: 1111,
+      amountOfWater:data?.['amountOfWater'],
+      nutrientSource: data?.['nutrientSource'],
+      microorganism: data?.['microorganism'],
+      temperature: data?.['temperature'],
+    })
   }
 }

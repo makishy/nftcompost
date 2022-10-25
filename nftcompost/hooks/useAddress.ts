@@ -1,18 +1,17 @@
 import { doc, getDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from '../lib/firebase'
+import { getAddressValue } from '../services/FirestoreService'
 
 export const useAddress = (address?: string) => {
   const [deviceId, setDeviceId] = useState<string>()
-
+  const [point, setPoint] = useState<number>(0)
   useEffect(() => {
     const f = async () => {
       if (address) {
-        const docRef = doc(db, 'addresses', address)
-        const docSnap = await getDoc(docRef)
-        if (docSnap.exists()) {
-          const deviceId = docSnap.get('deviceId')
-          setDeviceId(deviceId)
+        const ret = await getAddressValue(address, 'deviceId') as string
+        if (ret) {
+          setDeviceId(ret)
         } else {
           console.log('no data')
         }
@@ -20,5 +19,18 @@ export const useAddress = (address?: string) => {
     }
     f()
   }, [address])
-  return { deviceId }
+  useEffect(() => {
+    const f = async () => {
+      if (address) {
+        const ret = await getAddressValue(address, 'point') as number
+        if (ret) {
+          setPoint(ret)
+        } else {
+          console.log('no data')
+        }
+      }
+    }
+    f()
+  }, [address])
+  return { deviceId, point }
 }
