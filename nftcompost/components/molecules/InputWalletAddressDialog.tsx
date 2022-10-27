@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { useAddress } from '../../hooks/useAddress'
 
 type InputWalletAddressDialogProps = {
   isOpen: boolean
@@ -20,6 +21,7 @@ export const InputWalletAddressDialog: React.FC<
   const { isOpen, onClose } = props
   const router = useRouter()
   const [address, setAddress] = useState<string>('')
+  const { onAdd } = useAddress()
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>
@@ -40,7 +42,10 @@ export const InputWalletAddressDialog: React.FC<
         </Button>
         <Button
           variant='contained'
-          onClick={() => router.push(`/composts?address=${address}`)}
+          onClick={() => {
+            onAdd(address)
+            router.push(`/composts?address=${address}`)
+          }}
         >
           Buy NFTCompost
         </Button>

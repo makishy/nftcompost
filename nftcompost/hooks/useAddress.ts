@@ -1,7 +1,7 @@
 import { doc, getDoc, onSnapshot } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { db } from '../lib/firebase'
-import { getAddressValue } from '../services/FirestoreService'
+import { addAddress, getAddressValue } from '../services/FirestoreService'
 
 export const useAddress = (address?: string) => {
   const [deviceId, setDeviceId] = useState<string>()
@@ -44,5 +44,14 @@ export const useAddress = (address?: string) => {
     }
   }, [address])
 
-  return { deviceId, point }
+  const onAdd = useCallback(
+    (address: string) => {
+      if (address.length !== 0) {
+        addAddress(address)
+      }
+    },
+    [],
+  )
+
+  return { deviceId, point, onAdd }
 }

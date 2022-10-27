@@ -1,5 +1,5 @@
 import { db } from '../lib/firebase'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 
 export const getAddressValue = async (address: string, key: string): Promise<string | number | undefined> => {
   const docRef = doc(db, 'addresses', address)
@@ -8,6 +8,19 @@ export const getAddressValue = async (address: string, key: string): Promise<str
     return docSnap.get(key)
   } else {
     return
+  }
+}
+
+export const addAddress = async (address: string) => {
+  const docRef = doc(db, 'addresses', address)
+  const docSnap = await getDoc(docRef)
+  if (!docSnap.exists()) {
+    const initialValue = {
+      deviceId: '0001',//TODO change individual value
+      point: 500,
+      token: 0
+    }
+    await setDoc(docRef, initialValue)
   }
 }
 
@@ -40,6 +53,4 @@ export const requestToken = async (amountOfRequestTokens: number, address: strin
   // const deviceId = addressData?.deviceId
   const newData = { token: ownToken + amountOfRequestTokens }
   await updateDoc(docAddressRef, newData)
-
-
 }

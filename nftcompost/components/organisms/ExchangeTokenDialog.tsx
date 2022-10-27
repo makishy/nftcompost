@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useAddress } from '../../hooks/useAddress'
 import { connectedAddress } from '../../store/OwnerAddrState'
@@ -18,6 +18,11 @@ export const ExchangeTokenDialog: React.FC<ExchangeTokenDialogProps> = (props) =
   const { point } = useAddress(address)
   const { onRequestToken } = useToken()
   const [value, setValue] = useState<number>(0)
+  useEffect(() => {
+    if (isOpen)
+      setValue(0)
+  }, [isOpen])
+
   const handleOnClose = () => {
     onClose()
   }

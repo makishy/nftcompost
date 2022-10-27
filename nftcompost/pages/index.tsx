@@ -8,6 +8,7 @@ import { InputWalletAddressDialog } from '../components/molecules/InputWalletAdd
 import { PageTemplate } from '../components/templates/PageTemplate'
 import { Title } from '../components/atoms/Title'
 import styles from '../styles/Home.module.css'
+import { useAddress } from '../hooks/useAddress'
 
 const Home: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false)
