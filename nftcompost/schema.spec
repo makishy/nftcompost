@@ -15,3 +15,7 @@
     nutrientSourcePoint
     temperaturePoint
 
+/token
+  totalSupply
+  remain
+
