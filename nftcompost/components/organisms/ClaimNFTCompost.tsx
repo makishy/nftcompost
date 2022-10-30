@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { nftContractAddress } from '../../entities/SmartContract'
+import { useJoiner } from '../../hooks/useJoiner'
 import { connectedAddress } from '../../store/OwnerAddrState'
 import { CompostImg } from '../atoms/Compost'
 import { ClaimNFTButton } from './ClaimNFTButton'
@@ -18,7 +19,7 @@ export const ClaimNFTCompost: React.FC = () => {
   const address = useAddress()
   const [nfts, setNfts] = useState<NFT>()
   const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop)
-
+  const { onAdd } = useJoiner()
   useEffect(() => {
     console.log(nftDrop)
     const f = async () => {
@@ -71,7 +72,15 @@ export const ClaimNFTCompost: React.FC = () => {
         </CardContent>
       </Card>
       <Box mt={6} />
-      <ClaimNFTButton contractAddress={nftContractAddress} />
+      <ClaimNFTButton
+        contractAddress={nftContractAddress}
+        onSuccess={() => {
+          if (address) {
+            onAdd(address)
+            router.push('/composts')
+          }
+        }
+        } />
     </Stack >
   )
 }

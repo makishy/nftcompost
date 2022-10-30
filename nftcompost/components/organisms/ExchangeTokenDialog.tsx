@@ -5,6 +5,7 @@ import { connectedAddress } from '../../store/OwnerAddrState'
 import { NumericField } from '../molecules/NumericField'
 import { usePoint } from '../../hooks/usePoint'
 import { ClaimTokenButton } from './ClaimTokenButton'
+import { SuccessSnackBar } from '../molecules/SuccessSnackBar'
 
 type ExchangeTokenDialogProps = {
   isOpen: boolean
@@ -28,15 +29,10 @@ export const ExchangeTokenDialog: React.FC<ExchangeTokenDialogProps> = (props) =
   }
   return (
     <>
-      <Snackbar
-        open={isOpenSuccessBar}
-        autoHideDuration={3000}
+      <SuccessSnackBar
+        isOpen={isOpenSuccessBar}
         onClose={handleSnackBarClose}
-      >
-        <Alert onClose={handleSnackBarClose} severity="success" sx={{ width: '100%' }}>
-          Success claimed!!
-        </Alert>
-      </Snackbar>
+        message='Success claimed!!' />
       <Dialog open={isOpen} onClose={handleOnClose} >
         <DialogTitle>Exchange to Token</DialogTitle>
         <DialogContent>
