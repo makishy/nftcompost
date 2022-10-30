@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box, Card, CardContent, Stack } from '@mui/material'
-import { useActiveClaimCondition, useAddress, useContract, useContractMetadata, useUnclaimedNFTSupply, Web3Button } from '@thirdweb-dev/react'
+import { Box, Card, CardContent, Stack, Typography } from '@mui/material'
+import { useActiveClaimCondition, useAddress, useClaimedNFTSupply, useContract, useContractMetadata, useUnclaimedNFTSupply, Web3Button } from '@thirdweb-dev/react'
 import { NFT } from '@thirdweb-dev/sdk'
 import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import { useRouter } from 'next/router'
@@ -25,6 +25,9 @@ export const BuyCompost: React.FC = () => {
   const address = useAddress()
   const [nfts, setNfts] = useState<NFT>()
 
+  // Load claimed supply and unclaimed supply
+  const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop)
+  const { data: claimedSupply } = useClaimedNFTSupply(nftDrop)
 
   useEffect(() => {
     console.log(nftDrop)
@@ -66,6 +69,15 @@ export const BuyCompost: React.FC = () => {
       <Card>
         <CardContent>
           <CompostImg />
+          <Box mt={3} />
+          <Stack direction='row' justifyContent='center' alignItems='center' spacing={1}>
+            <Typography variant='body2'>
+              remaining
+            </Typography>
+            <Typography variant='h6'>
+              {unclaimedSupply?.toNumber()}
+            </Typography>
+          </Stack>
         </CardContent>
       </Card>
       <Box mt={6} />
