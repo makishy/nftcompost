@@ -35,9 +35,9 @@ export const OwnNFT = () => {
           <CircularProgress /> :
           <Box >
             <CompostImg color='red' />
-            <Box sx={{ zIndex: 'modal', position: 'absolute', top: 146, left: '43%' }}>
+            <Box sx={{ zIndex: 'modal', position: 'fixed', top: 147, left: '50%' }}>
               <img
-                style={{ width: 50 }}
+                style={{ width: 44 }}
                 src={nftImage}
                 alt='nft image'
               />
