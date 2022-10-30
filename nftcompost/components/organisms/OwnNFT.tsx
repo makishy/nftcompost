@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { nftContractAddress } from '../../entities/SmartContract'
 import Compost from '../../pages/composts'
 import { CompostImg } from '../atoms/Compost'
-import { ConnectButton } from './ConnectButton'
+import { ClaimNFTButton } from './ClaimNFTButton'
 
 export const OwnNFT = () => {
   const { contract: nftDrop } = useContract(nftContractAddress)
@@ -29,7 +29,7 @@ export const OwnNFT = () => {
   return (
     <Box display='flex' justifyContent='center'>
       {!address ?
-        <ConnectButton contractAddress={nftContractAddress} />
+        <ClaimNFTButton contractAddress={nftContractAddress} />
         :
         !nftImage ?
           <CircularProgress /> :

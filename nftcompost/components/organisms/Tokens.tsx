@@ -1,7 +1,10 @@
 import { Card, CardContent, Stack, Typography } from '@mui/material'
-import React from 'react'
+import { useAddress, useContract } from '@thirdweb-dev/react'
+import { BigNumber } from 'ethers'
+import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { useOwnPoint } from '../../hooks/useOwnPoint'
+import { tokenContractAddress } from '../../entities/SmartContract'
+import { usePoint } from '../../hooks/usePoint'
 import { connectedAddress } from '../../store/OwnerAddrState'
 import { Coin } from '../atoms/Coin'
 import { DisplayLabelValue } from '../molecules/DisplayLabelValue'
@@ -9,8 +12,20 @@ import { Point } from './Point'
 
 
 export const Tokens = () => {
-  const address = useRecoilValue(connectedAddress)
-  const { point } = useOwnPoint()
+  const { contract } = useContract(tokenContractAddress, "token-drop")
+  const { point } = usePoint()
+  const [balanceOf, setBalanceOf] = useState<string>()
+  const [symbol, setSymbol] = useState<string>('')
+  useEffect(() => {
+    const f = async () => {
+      if (contract) {
+        const b = await contract?.balance()
+        setBalanceOf(b.displayValue)
+        setSymbol(b.symbol)
+      }
+    }
+    f()
+  }, [contract, point])
 
   return (
     <Stack spacing={1}>
@@ -20,12 +35,8 @@ export const Tokens = () => {
           <Typography variant='h6'>My Token</Typography>
           <Stack>
             <DisplayLabelValue
-              label='Tokens'
-              value={<Token value={777} unit='CPT' />}
-            />
-            <DisplayLabelValue
-              label='TotalSupply'
-              value={<Token value={10000} unit='CPT' />}
+              label='BalanceOf'
+              value={<Value value={balanceOf ?? "0"} unit={symbol} />}
             />
           </Stack>
         </CardContent>
@@ -35,11 +46,11 @@ export const Tokens = () => {
   )
 }
 
-type TokenProps = {
-  value: number
+type ValueProps = {
+  value: string
   unit: string
 }
-const Token: React.FC<TokenProps> = (props) => {
+const Value: React.FC<ValueProps> = (props) => {
   const { value, unit } = props
   return (
     <Stack direction='row' alignItems='center' spacing={1}>

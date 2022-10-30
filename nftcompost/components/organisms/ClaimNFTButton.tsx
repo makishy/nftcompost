@@ -1,10 +1,10 @@
 import { Web3Button } from '@thirdweb-dev/react'
 import React from 'react'
 
-type ConnectButtonProps = {
+type ClaimNFTButtonProps = {
   contractAddress: string
 }
-export const ConnectButton: React.FC<ConnectButtonProps> = (props) => {
+export const ClaimNFTButton: React.FC<ClaimNFTButtonProps> = (props) => {
   const { contractAddress } = props
   return (
     <Web3Button
@@ -16,8 +16,7 @@ export const ConnectButton: React.FC<ConnectButtonProps> = (props) => {
       onSuccess={(result) => {
         console.log(result)
         alert(
-          `Successfully minted ${result.length} NFT${result.length > 1 ? 's' : ''
-          }!`
+          `Successfully claim 1 NFT!`
         )
       }
       }
@@ -26,7 +25,7 @@ export const ConnectButton: React.FC<ConnectButtonProps> = (props) => {
       accentColor='#ff4500'
       colorMode='dark'
     >
-      Mint (Free)
+      Claim NFT (Free)
     </Web3Button>
   )
 }

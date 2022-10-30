@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { useDeviceId } from '../../hooks/useDeviceId'
 import { useDeviceMonitoringState } from '../../hooks/useMonitoringState'
-import { useOwnPoint } from '../../hooks/useOwnPoint'
+import { usePoint } from '../../hooks/usePoint'
 import { CompostImg } from '../atoms/Compost'
 import { EmptyCard } from '../molecules/EmptyCard'
 import { Gauge } from '../molecules/Gauge'
@@ -12,7 +12,7 @@ import { Point } from './Point'
 import { State } from './State'
 
 export const Monitoring: React.FC = () => {
-  const { point, address } = useOwnPoint()
+  const { point, address } = usePoint()
   const { deviceId } = useDeviceId(address)
   const { monitoringStates } = useDeviceMonitoringState(deviceId)
   return (

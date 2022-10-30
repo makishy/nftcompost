@@ -2,9 +2,9 @@ import { useAddress } from '@thirdweb-dev/react'
 import { doc, getDoc, onSnapshot } from 'firebase/firestore'
 import { useCallback, useEffect, useState } from 'react'
 import { db } from '../lib/firebase'
-import { addAddress, getAddressValue } from '../services/FirestoreService'
+import { addAddress, consumePoint, getAddressValue } from '../services/FirestoreService'
 
-export const useOwnPoint = () => {
+export const usePoint = () => {
   const address = useAddress()
   const [point, setPoint] = useState<number>(0)
   useEffect(() => {
@@ -32,6 +32,16 @@ export const useOwnPoint = () => {
     }
   }, [address])
 
+  const onConsumePoint = useCallback(
+    async (amountOfRequestTokens: number) => {
+      if (address) {
+        // decrease own points
+        consumePoint(address, amountOfRequestTokens * 100)
 
-  return { point, address }
+      }
+    },
+    [address])
+
+
+  return { point, address, onConsumePoint }
 }
