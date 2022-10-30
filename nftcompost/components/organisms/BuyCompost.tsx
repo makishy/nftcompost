@@ -6,14 +6,15 @@ import { formatUnits, parseUnits } from 'ethers/lib/utils'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { nftContractAddress } from '../../entities/SmartContract'
 import { connectedAddress } from '../../store/OwnerAddrState'
 import { CompostImg } from '../atoms/Compost'
-const myNftDropContractAddress = '0xe8bA90b77532ee32E773d287Ed8B35150F782640'
+import { ConnectButton } from './ConnectButton'
 export const BuyCompost: React.FC = () => {
   const router = useRouter()
   const [_, setOwnerAddr] = useRecoilState(connectedAddress)
   const [quantity] = useState(1) // default to 1
-  const { contract: nftDrop } = useContract(myNftDropContractAddress)
+  const { contract: nftDrop } = useContract(nftContractAddress)
   const { data: activeClaimCondition } = useActiveClaimCondition(nftDrop)
   // Check price
   const price = parseUnits(
@@ -27,7 +28,6 @@ export const BuyCompost: React.FC = () => {
 
   // Load claimed supply and unclaimed supply
   const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop)
-  const { data: claimedSupply } = useClaimedNFTSupply(nftDrop)
 
   useEffect(() => {
     console.log(nftDrop)
@@ -81,8 +81,9 @@ export const BuyCompost: React.FC = () => {
         </CardContent>
       </Card>
       <Box mt={6} />
-      <Web3Button
-        contractAddress={myNftDropContractAddress}
+      <ConnectButton contractAddress={nftContractAddress} />
+      {/* <Web3Button
+        contractAddress={nftContractAddress}
         action={async (contract) =>
           await contract.erc721.claim(1) //1 claim per one address
         }
@@ -109,7 +110,7 @@ export const BuyCompost: React.FC = () => {
             )} ${activeClaimCondition?.currencyMetadata.symbol})`
             : ''
           }`}
-      </Web3Button>
+      </Web3Button> */}
     </Stack >
   )
 }

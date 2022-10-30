@@ -8,10 +8,10 @@ import {
   TableRow,
 } from '@mui/material'
 import React from 'react'
-import { useDevice } from '../../hooks/useDevice'
+import { useDeviceLog } from '../../hooks/useDevice'
 
 export const Logs = () => {
-  const logs = useDevice()
+  const logs = useDeviceLog()
   return (
     <TableContainer component={Paper}>
       <Table>

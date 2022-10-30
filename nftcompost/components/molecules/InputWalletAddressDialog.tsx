@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { useAddress } from '../../hooks/useAddress'
+import { useJoiner } from '../../hooks/useJoiner'
 
 type InputWalletAddressDialogProps = {
   isOpen: boolean
@@ -21,7 +21,7 @@ export const InputWalletAddressDialog: React.FC<
   const { isOpen, onClose } = props
   const router = useRouter()
   const [address, setAddress] = useState<string>('')
-  const { onAdd } = useAddress()
+  const { onAdd } = useJoiner()
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>

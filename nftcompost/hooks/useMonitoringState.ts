@@ -6,7 +6,7 @@ import {
   doc,
   getDocs,
 } from 'firebase/firestore'
-export const useMonitoringState = (deviceId?: string) => {
+export const useDeviceMonitoringState = (deviceId?: string) => {
   const [monitoringStates, setMonitoringStates] = useState<MonitoringState[]>([])
   useEffect(() => {
     const f = async () => {

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { BuyCompost } from '../components/molecules/BuyCompost'
+import { BuyCompost } from '../components/organisms/BuyCompost'
 import { PageTemplate } from '../components/templates/PageTemplate'
 import { Title } from '../components/atoms/Title'
 import styles from '../styles/Home.module.css'

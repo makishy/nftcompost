@@ -1,12 +1,10 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { useAddress } from '../../hooks/useAddress'
 import { connectedAddress } from '../../store/OwnerAddrState'
-import AddIcon from '@mui/icons-material/Add'
-import RemoveIcon from '@mui/icons-material/Remove'
 import { NumericField } from '../molecules/NumericField'
 import { useToken } from '../../hooks/useToken'
+import { useOwnPoint } from '../../hooks/useOwnPoint'
 
 type ExchangeTokenDialogProps = {
   isOpen: boolean
@@ -14,8 +12,7 @@ type ExchangeTokenDialogProps = {
 }
 export const ExchangeTokenDialog: React.FC<ExchangeTokenDialogProps> = (props) => {
   const { isOpen, onClose } = props
-  const address = useRecoilValue(connectedAddress)
-  const { point } = useAddress(address)
+  const { point, address } = useOwnPoint()
   const { onRequestToken } = useToken()
   const [value, setValue] = useState<number>(0)
   useEffect(() => {
@@ -49,6 +46,7 @@ export const ExchangeTokenDialog: React.FC<ExchangeTokenDialogProps> = (props) =
           variant='contained'
           fullWidth
           onClick={() => {
+            console.log(address)
             onRequestToken(value, address)
             onClose()
           }}

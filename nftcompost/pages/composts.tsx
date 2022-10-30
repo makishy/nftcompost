@@ -31,7 +31,7 @@ const Compost: NextPage = () => {
   return (
     <PageTemplate>
       {selectedTab === 0 ? (
-        <Monitoring address={ownerAddr} />
+        <Monitoring />
       ) : selectedTab === 1 ? (
         <Tokens />
       ) : (
