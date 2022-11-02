@@ -8,11 +8,41 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
-    <PageTemplate>
-      <Title />
-      <Box mt={3} />
-      <ClaimNFTCompost />
-    </PageTemplate>
+    <>
+    <Head>
+        <title>NFTCompost</title>
+        <SEO />
+      </Head>
+      <PageTemplate>
+        <Title />
+        <Box mt={3} />
+        <ClaimNFTCompost />
+      </PageTemplate>
+    </>
+  )
+}
+
+const SEO = () => {
+  return (
+    <>
+      <meta name='viewport' content='width=device-width,initial-scale=1.0' />
+      <meta
+        name='description'
+        content={'Grow compost and save the world!'}
+      />
+      <meta property='og:url' content={'https://makishy-dapps.web.app/'} />
+      <meta property='og:title' content={'NFTCompost web site'} />
+      <meta property='og:site_name' content={'NFTCompost'} />
+      <meta
+        property='og:description'
+        content={'Join the game of Grow Compost and save the world!'}
+      />
+      <meta property='og:type' content='website' />
+      <meta
+        property='og:image'
+        content={'https://makishy-dapps.web.app/Compost.png'}
+      />
+    </>
   )
 }
 

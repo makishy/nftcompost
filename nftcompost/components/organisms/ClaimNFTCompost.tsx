@@ -37,9 +37,7 @@ export const ClaimNFTCompost: React.FC = () => {
   useEffect(() => {
     const f = async () => {
       if (nftDrop && address) {
-        console.log(address)
         const balance = await nftDrop.erc721.balanceOf(address);
-        console.log(balance.toNumber());
         if (balance.toNumber() >= 1) {
           router.push('/composts')
         }
@@ -47,14 +45,12 @@ export const ClaimNFTCompost: React.FC = () => {
     }
     f()
   }, [nftDrop, address, router])
-
   useEffect(() => {
     if (nfts?.owner) {
       const address = nfts?.owner
       setOwnerAddr(address!)
     }
   }, [nfts?.owner, setOwnerAddr])
-
   return (
     <Stack spacing={1}>
       <Card>
