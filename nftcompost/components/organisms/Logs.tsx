@@ -18,10 +18,10 @@ export const Logs = () => {
         <TableHead>
           <TableRow>
             <TableCell>createdAt</TableCell>
-            <TableCell>microorganism</TableCell>
-            <TableCell>Nutrient source</TableCell>
-            <TableCell>amount of water</TableCell>
-            <TableCell>temperature</TableCell>
+            <TableCell>Weight/volume</TableCell>
+            <TableCell>Moisture</TableCell>
+            <TableCell>Humidity</TableCell>
+            <TableCell>Temperature</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -30,9 +30,9 @@ export const Logs = () => {
               <TableCell component='th' scope='row'>
                 {log.formattedCreatedAt}
               </TableCell>
-              <TableCell align='right'>{log.microorganism}</TableCell>
-              <TableCell align='right'>{log.nutrientSource}</TableCell>
-              <TableCell align='right'>{log.amountOfWater}</TableCell>
+              <TableCell align='right'>{log.weight}</TableCell>
+              <TableCell align='right'>{log.moisture}</TableCell>
+              <TableCell align='right'>{log.humidity}</TableCell>
               <TableCell align='right'>{log.temperature}</TableCell>
             </TableRow>
           ))}
