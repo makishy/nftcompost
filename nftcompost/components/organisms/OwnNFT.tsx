@@ -6,17 +6,20 @@ import Compost from '../../pages/composts'
 import { CompostImg } from '../atoms/Compost'
 import { ClaimNFTButton } from './ClaimNFTButton'
 
-export const OwnNFT = () => {
+type OwnNFTProps = {
+  isCry?: boolean
+}
+export const OwnNFT: React.FC<OwnNFTProps> = (props) => {
+  const { isCry } = props
   const { contract: nftDrop } = useContract(nftContractAddress)
   const address = useAddress()
   const [nftImage, setNftImage] = useState<string | undefined>()
 
   useEffect(() => {
-    console.log(nftDrop)
-    console.log(address)
     const f = async () => {
-      if (nftDrop && address) {
+      if (!isCry && nftDrop && address) {
         const tokenId = await nftDrop.erc721.getOwnedTokenIds(address);
+        //owner can have only one nft in this use case.
         if (tokenId[0]) {
           const nfts = await nftDrop.erc721.get(tokenId[0].toNumber());
           const image = nfts?.metadata?.image ?? undefined
@@ -25,25 +28,21 @@ export const OwnNFT = () => {
       }
     }
     f()
-  }, [nftDrop, address])
+  }, [isCry, nftDrop, address])
   return (
     <Box display='flex' justifyContent='center'>
       {!address ?
         <ClaimNFTButton contractAddress={nftContractAddress} />
         :
-        !nftImage ?
-          <CircularProgress /> :
-          <Box >
-            <CompostImg color='red' />
-            <Box sx={{ zIndex: 'modal', position: 'fixed', top: 147, left: '50%' }}>
+        isCry ? <CompostImg isCry={true} /> :
+          !nftImage ?
+            <CircularProgress /> :
+            <Box >
               <img
-                style={{ width: 44 }}
+                style={{ width: 128 }}
                 src={nftImage}
-                alt='nft image'
-              />
+                alt='nft image' />
             </Box>
-          </Box>
-
       }
 
     </Box>

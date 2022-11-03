@@ -4,11 +4,11 @@ import { DisplayLabelValue } from '../molecules/DisplayLabelValue'
 import { Gauge } from '../molecules/Gauge'
 import { MonitoringState } from '../../entities/MonitoringState'
 
-type StateProps ={
+type StateProps = {
   state: MonitoringState
 }
-export const State:React.FC<StateProps> = (props) => {
-  const {state}  = props
+export const State: React.FC<StateProps> = (props) => {
+  const { state } = props
 
   return (
     <Card>
@@ -19,20 +19,24 @@ export const State:React.FC<StateProps> = (props) => {
         <Box mt={2} />
         <Stack>
           <DisplayLabelValue
-            label='microorganism'
-            value={<Gauge amount={state.microorganismPoint} max={5} />}
-          />
-          <DisplayLabelValue
-            label='Nutrient source'
-            value={<Gauge amount={state.nutrientSourcePoint} max={5} />}
-          />
-          <DisplayLabelValue
-            label='amount of water'
-            value={<Gauge amount={state.amountOfWaterPoint} max={5} />}
-          />
-          <DisplayLabelValue
-            label='temperature'
+            label='Temperature'
+            color={state.temperaturePoint < 2 ? 'red' : 'green'}
             value={<Gauge amount={state.temperaturePoint} max={5} />}
+          />
+          <DisplayLabelValue
+            label='Moisture'
+            color={state.moisturePoint < 2 ? 'red' : 'green'}
+            value={<Gauge amount={state.moisturePoint} max={5} />}
+          />
+          <DisplayLabelValue
+            label='Humidity'
+            color={state.humidityPoint < 2 ? 'red' : 'green'}
+            value={<Gauge amount={state.humidityPoint} max={5} />}
+          />
+          <DisplayLabelValue
+            label='Weight/volume'
+            color={state.weightPoint < 2 ? 'red' : 'green'}
+            value={<Gauge amount={state.weightPoint} max={5} />}
           />
         </Stack>
       </CardContent>

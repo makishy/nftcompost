@@ -10,7 +10,11 @@ type GaugeProps = {
 export const Gauge: React.FC<GaugeProps> = (props) => {
   const { amount, max } = props
   const a = amount > max ? max : amount
-  const amountStars = [...Array(a)].map((_, i) => <StarIcon key={i} />)
+  const amountStars = [...Array(a)].map((_, i) => {
+    return <StarIcon
+      key={i}
+      color={a < 2 ? 'error' : 'success'} />
+  })
   const emptyStars = [...Array(max - a)].map((_, i) => (
     <StarBorderIcon key={i} />
   ))
