@@ -4,7 +4,7 @@ import { ReactElement } from 'react'
 type DisplayLabelValueProps = {
   label: string
   value: ReactElement
-  color?: 'green' | 'red'
+  color?: 'green' | 'red' | 'primary'
 }
 export const DisplayLabelValue: React.FC<DisplayLabelValueProps> = (props) => {
   const { label, value, color } = props
@@ -15,7 +15,7 @@ export const DisplayLabelValue: React.FC<DisplayLabelValueProps> = (props) => {
       alignItems='center'
       spacing={2}
     >
-      <Typography width={100} color={color}>{label}</Typography>
+      <Typography width={100} color={color} fontWeight='bold'>{label}</Typography>
       <>{value}</>
     </Stack>
   )

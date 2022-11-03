@@ -13,7 +13,7 @@ export const Gauge: React.FC<GaugeProps> = (props) => {
   const amountStars = [...Array(a)].map((_, i) => {
     return <StarIcon
       key={i}
-      color={a < 2 ? 'error' : 'success'} />
+      color={a < 2 ? 'error' : 'primary'} />
   })
   const emptyStars = [...Array(max - a)].map((_, i) => (
     <StarBorderIcon key={i} />

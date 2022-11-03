@@ -20,22 +20,22 @@ export const State: React.FC<StateProps> = (props) => {
         <Stack>
           <DisplayLabelValue
             label='Temperature'
-            color={state.temperaturePoint < 2 ? 'red' : 'green'}
+            color={state.temperaturePoint < 2 ? 'red' : 'primary'}
             value={<Gauge amount={state.temperaturePoint} max={5} />}
           />
           <DisplayLabelValue
             label='Moisture'
-            color={state.moisturePoint < 2 ? 'red' : 'green'}
+            color={state.moisturePoint < 2 ? 'red' : 'primary'}
             value={<Gauge amount={state.moisturePoint} max={5} />}
           />
           <DisplayLabelValue
             label='Humidity'
-            color={state.humidityPoint < 2 ? 'red' : 'green'}
+            color={state.humidityPoint < 2 ? 'red' : 'primary'}
             value={<Gauge amount={state.humidityPoint} max={5} />}
           />
           <DisplayLabelValue
             label='Weight/volume'
-            color={state.weightPoint < 2 ? 'red' : 'green'}
+            color={state.weightPoint < 2 ? 'red' : 'primary'}
             value={<Gauge amount={state.weightPoint} max={5} />}
           />
         </Stack>
