@@ -1,34 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tokyo Web3 Hackathon NFT部門 「Compost Project in India」
 
-## Getting Started
+本リポジトリでは、「Compost Project in India」プロジェクトのフロントエンド機能を作成。
+バックエンドのスマートコントラクトはthirdweb、データ保存用NoSQLサービスはFirebaseを用いて構築。
 
-First, run the development server:
+## Information
+### 使用したtech stacks
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+ - フロントエンド開発言語：Typescript
+ - JavaScriptフレームワーク：[Next.js](https://nextjs.org/)
+ - スマートコントラクト開発：[thirdweb](https://thirdweb.com/)
+ - NoSQLデータベース: Firestore
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 使用したBlockchain
+ - goerli testnet
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### deployしたContract
+ - NFT発行用SmartContract Address： 0xEb06a00E9d0D3646098f4100b15a01221db27Ba8
+ - Token発行用SmartContract Address：0x1C1cBD89F147e65580485E0E9919F42E682A9bE9
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### テスト手順を含むリポジトリへのリンク
+ブラウザから以下URLにアクセスして操作を行ってください。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+https://makishy-dapps.web.app/
 
-## Learn More
+スマートコントラクトはgoerli testnet上に構築しています。
+NFT取得およびトークン交換時にはガス代を要求されるため、GoerliETHを事前に取得しておく必要があります。
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+注）上記URLは本ハッカソン用に構築した期間限定のURLです。大量アクセスがあると課金を伴うためアクセスを停止させる可能性があります。利用は本ハッカソンの審査目的に留めてください。
