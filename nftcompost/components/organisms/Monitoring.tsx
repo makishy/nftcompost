@@ -16,7 +16,6 @@ export const Monitoring: React.FC = () => {
   const { point, address } = usePoint()
   const { deviceId } = useDeviceId(address)
   const { monitoringStates } = useDeviceMonitoringState(deviceId)
-  console.log(monitoringStates)
   const isCry = _getIsCry(monitoringStates[0])
   return (
     <PageTemplate>

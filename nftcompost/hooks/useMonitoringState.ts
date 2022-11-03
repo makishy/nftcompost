@@ -18,11 +18,8 @@ export const useDeviceMonitoringState = (deviceId?: string) => {
         const q = query(pointRef)
         const unsubscribe = onSnapshot(q, (snap) => {
           snap.docChanges().forEach((change) => {
-            console.log('change', change)
             if (change.type === 'added' || change.type === 'modified') {
-              console.log('change.doc', change.doc)
               const data = change.doc.data()
-              console.log('data', data)
               setMonitoringStates([MonitoringState.fromData(data)])
             }
           })

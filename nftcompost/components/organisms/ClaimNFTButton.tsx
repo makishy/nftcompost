@@ -25,7 +25,6 @@ export const ClaimNFTButton: React.FC<ClaimNFTButtonProps> = (props) => {
           await contract.erc721.claim(1) //1 claim per one address
         }
         onSuccess={(result) => {
-          console.log(result)
           if (onSuccess) {
             onSuccess()
           }

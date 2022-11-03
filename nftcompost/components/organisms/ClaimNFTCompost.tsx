@@ -21,7 +21,6 @@ export const ClaimNFTCompost: React.FC = () => {
   const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop)
   const { onAdd } = useJoiner()
   useEffect(() => {
-    console.log(nftDrop)
     const f = async () => {
       if (nftDrop && address) {
         const tokenId = await nftDrop.erc721.getOwnedTokenIds(address);
