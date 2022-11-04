@@ -14,7 +14,7 @@ export const CompostImg: React.FC<CompostProps> = (props) => {
           <img src='/CompostRed.png' alt='compost' />
           :
           isCry ?
-            <img src='/Compost_cry.png' alt='compost' /> :
+            <img src='/CompostCry.png' alt='compost' /> :
             <img src='/Compost.png' alt='compost' />
       }
     </Stack>
