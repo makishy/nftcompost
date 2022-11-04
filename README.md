@@ -1,7 +1,7 @@
-# Tokyo Web3 Hackathon NFT部門 「Compost Project in India」
+# Tokyo Web3 Hackathon NFT部門 「Waste India」
 
-本リポジトリでは、「Compost Project in India」プロジェクトのフロントエンド機能を作成。
-バックエンドのスマートコントラクトはthirdweb、データ保存用NoSQLサービスはFirebaseを用いて構築。
+本リポジトリでは、「Waste India」プロジェクトのフロントエンド機能を作成。
+バックエンドのスマートコントラクトはthirdweb、データ保存用NoSQLサービスはFirebaseを用いて構築した。
 
 ## Information
 ### 使用したtech stacks
