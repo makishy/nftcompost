@@ -1,10 +1,18 @@
-import { Card, CardContent, CardHeader, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Stack,
+  Typography,
+} from '@mui/material'
 import React, { ReactElement } from 'react'
 import { MonitoringState } from '../../entities/MonitoringState'
 import { useDeviceId } from '../../hooks/useDeviceId'
 import { useDeviceMonitoringState } from '../../hooks/useMonitoringState'
 import { usePoint } from '../../hooks/usePoint'
 import { CompostImg } from '../atoms/Compost'
+import { Balloon } from '../molecules/Balloon'
 import { EmptyCard } from '../molecules/EmptyCard'
 import { Gauge } from '../molecules/Gauge'
 import { PageTemplate } from '../templates/PageTemplate'
@@ -21,11 +29,20 @@ export const Monitoring: React.FC = () => {
     <PageTemplate>
       <Stack spacing={1}>
         <OwnNFT isCry={isCry} />
-        {monitoringStates.length === 0 ?
-          <EmptyCard /> :
+        <Stack direction='row' justifyContent='center'>
+          <Balloon
+            state={isCry ? 'error' : 'success'}
+            message={isCry ? 'I am too hot and thirsty' : 'I am comfortable'}
+          />
+        </Stack>
+        <Box mt={2} />
+        {monitoringStates.length === 0 ? (
+          <EmptyCard />
+        ) : (
           monitoringStates.map((s, i) => {
-            return (<State key={i} state={s} />)
-          })}
+            return <State key={i} state={s} />
+          })
+        )}
         <Point point={point} />
       </Stack>
     </PageTemplate>
@@ -34,8 +51,10 @@ export const Monitoring: React.FC = () => {
 
 const _getIsCry = (monitoringState?: MonitoringState) => {
   if (!monitoringState) return false
-  return monitoringState.humidityPoint < 2 ||
+  return (
+    monitoringState.humidityPoint < 2 ||
     monitoringState.moisturePoint < 2 ||
     monitoringState.temperaturePoint < 2 ||
     monitoringState.weightPoint < 2
+  )
 }
